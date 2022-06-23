@@ -6,13 +6,15 @@ import FlagIcon from "@mui/icons-material/Flag";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
-import { Avatar } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ForumIcon from "@mui/icons-material/Forum";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useStateValue } from "./StateProvider";
 
 function Header() {
+  const [{ user }, dispatch] = useStateValue();
   return (
     <div className="header">
       <div className="header__left">
@@ -22,11 +24,11 @@ function Header() {
         />
         <div className="header__input">
           <SearchIcon />
-          <input type="text" />
+          <input placeholder="Search" type="text" />
         </div>
       </div>
-      <div className="header__middle">
-        <div className="header__option">
+      <div className="header__center">
+        <div className="header__option header__oprtion--active">
           <HomeIcon fontSize="large" />
         </div>
         <div className="header__option">
@@ -44,9 +46,21 @@ function Header() {
       </div>
       <div className="header__right">
         <div className="header__info">
-          <Avatar>H</Avatar>
-          <h4>Cheon Woojin</h4>
+          <Avatar src={user.photoURL} />
+          <h4>{user.displayName}</h4>
         </div>
+        <IconButton>
+          <AddIcon />
+        </IconButton>
+        <IconButton>
+          <ForumIcon />
+        </IconButton>
+        <IconButton>
+          <NotificationsActiveIcon />
+        </IconButton>
+        <IconButton>
+          <ExpandMoreIcon />
+        </IconButton>
       </div>
     </div>
   );
