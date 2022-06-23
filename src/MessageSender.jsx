@@ -1,12 +1,13 @@
 import { Avatar } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./MessageSender.css";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useStateValue } from "./StateProvider";
 import db from "./firebase";
-import firebase from "./firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 function MessageSender() {
   const [{ user }, dispatch] = useStateValue();
